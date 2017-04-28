@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_flgtqzffrjksm7vi.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #f6f6f6;
+        }
+        .container{
+            width: 1190px;
+            margin: 10px auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .clearfix::after{
+            display: block;
+            content: '';
+            overflow: hidden;
+            height: 0;
+            width: 0;
+            clear: both;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        .triangle:before{
+            position: absolute;
+            display: inline-block;
+            content: '';
+            width: 0;
+            height: 0;
+            border: 16px solid transparent;
+            border-right: 16px solid #BD0311;
+            top: -13px;
+            left: -13px;
+            transform: rotate(45deg);
+            z-index: 1;
+
+        }
+        li{
+            list-style: none;
+        }
+
+        .container .header{
+            height: 55px;
+            background-image: url(//misc.360buyimg.com/mtd/pc/index/home/images/seckill_hd.png);
+            position: relative;
+            z-index:2;
+            color:#ffffff;
+        }
+        .container .header .left {
+            float: left;
+            padding-left: 40px;
+            font-size: 0px;
+        }
+        .container .header .right{
+            float: right;
+            padding-right: 40px;
+            font-size: 14px;
+            width: 268px;
+            vertical-align: middle;
+            position: absolute;
+            right:0;
+            top:50%;
+            transform: translate(0,-50%);
+        }
+        .container .header .right .black1,  .container .header .right .black2,  .container .header .right .black3{
+            display: inline-block;
+            width: 35px;
+            height: 37px;
+            background-color: #440106;
+            color: #f90013;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 3px;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .dd1 , .dd2{
+            vertical-align: middle;
+        }
+        .container .header .right i{
+            display: block;
+            width: 4px;
+            height: 4px;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            background-color: #440106;
+            margin:4px 0;
+            vertical-align: middle;
+        }
+        .goods-list{
+            background-color: #ffffff;
+            padding: 12px 0 13px;
+            height: 225px;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+
+
+
+        }
+        .goods-list .goods-left{
+            float: left;
+            width: 1000px;
+            overflow: hidden;
+            position: relative;
+        }
+        .goods-list .goods-left .goods-content p{
+            color: #999;
+            display: block;
+            max-width: 100%;
+            _width: 100%;
+            overflow: hidden;
+            font-size: 12px;
+            text-align: left;
+            height: 32px;
+            line-height: 16px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        .goods-list .goods-left .goods-content p:hover{
+            color: #c81623;
+        }
+        .goods-list ul{
+            width: 6000px;
+            transition: all .5s ease;
+        }
+        .goods-list ul li img{
+            transition: all .2s ease .2s;
+            margin-top: 4px;
+        }
+        .goods-list ul li{
+            float: left;
+            width: 170px;
+            height: 225px;
+            padding: 0 14px 0 15px;
+            border-right: 1px solid #e7e7e7;
+            position: relative;
+
+        }
+        .goods-list ul li:hover img{
+            transform: translate(0,-5px);
+
+        }
+        .goods-list .goods-pic{
+            margin-bottom: 18px
+        }
+        .goods-list .goods-pic span{
+            display: inline-block;
+            background-image: url(//misc.360buyimg.com/mtd/pc/index/home/images/sprite_index@1x.png);
+            width: 170px;
+            height: 20px;
+            position: absolute;
+            top: 118px;
+            left: 15px;
+        }
+        .goods-list .goods-right{
+            float: right;
+            margin-right: 10px;
+
+        }
+        .goods-list .goods-left .goods-content .price{
+            display: inline-block;
+            font-size: 18px;
+            color: #f10214;
+            margin-top: 10px;
+        }
+        .goods-list .goods-left .goods-content .discount{
+            color: #999;
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+        .iconfont1 {
+            display: none;
+            height: 50px;
+            width: 20px;
+            background-color: #ECECEC;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+            top:50%;
+            left:10px;
+            transform: translate(0, -50%);
+            z-index: 10;
+        }
+        .iconfont2{
+            display: none;
+            height: 50px;
+            width: 20px;
+            background-color: #ECECEC;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+            top:50%;
+            right:10px;
+            transform: translate(0,-50%) rotate(180deg);
+            z-index: 10;
+        }
+        .goods-list :hover .iconfont{
+            display: inline-block;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container triangle">
+        <header class="header">
+            <aside class="left">
+                <img src="./JD.png" alt="" height="55px">
+            </aside>
+            <aside class="right">
+                <span>当前场次</span>
+                <div class="black1">
+                    <span id="J_hour">03</span>
+                </div>
+                <div style="display: inline-block" class="dd1">
+                    <i></i>
+                    <i></i>
+                </div>
+                <div class="black2">
+                    <span id="J_minute">00</span>
+                </div>
+                <div  style="display: inline-block" class="dd2">
+                    <i></i>
+                    <i></i>
+                </div>
+                <div class="black3">
+                    <span id="J_second">00</span>
+                </div>
+                <span>后结束抢购</span>
+            </aside>
+        </header>
+        <section class="goods-list">
+            <div class="goods-left clearfix">
+                <i class="iconfont icon-left iconfont1" id="J_iconfont1"></i>
+                <i class="iconfont icon-left iconfont2" id="J_iconfont2"></i>
+                <ul class="clearfix" id="J-goods">
+
+                    <li>
+
+                        <div class="goods-pic">
+                            <img src="//img14.360buyimg.com/n4/s130x130_jfs/t4954/254/1179295893/215994/677707ec/58ed9bdeNd2e2cdbd.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img14.360buyimg.com/n4/s130x130_jfs/t2101/320/1098736951/318677/f183adbd/56792713N3bcb41de.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img10.360buyimg.com/n4/s130x130_jfs/t5245/160/398875889/109683/19dc4c7f/58ff0af3N7aabfef8.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img13.360buyimg.com/n4/s130x130_jfs/t3214/44/5456465255/86280/151240ff/58733e89N6e221cb6.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img12.360buyimg.com/n4/s130x130_jfs/t3304/120/153142177/26115/96d8752b/57a84b0cN79de2a70.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <!-- 下一页-->
+                    <li>
+
+                        <div class="goods-pic">
+                            <img src="https://img12.360buyimg.com/n4/s130x130_jfs/t2866/359/465007907/118303/dc6751bc/5714bc33Na24b4fd5.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img13.360buyimg.com/n4/s130x130_jfs/t4672/208/2167162687/284822/255c7ff1/58eee291N43459457.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img10.360buyimg.com/n4/s130x130_jfs/t5245/160/398875889/109683/19dc4c7f/58ff0af3N7aabfef8.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img13.360buyimg.com/n4/s130x130_jfs/t3214/44/5456465255/86280/151240ff/58733e89N6e221cb6.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="goods-pic">
+                            <img src="https://img12.360buyimg.com/n4/s130x130_jfs/t3304/120/153142177/26115/96d8752b/57a84b0cN79de2a70.jpg" alt="">
+                            <span></span>
+                        </div>
+                        <div class="goods-content">
+                            <p>华硕(ASUS) 灵耀 U4000 14.0英寸超轻薄笔记本电脑(i5-7200U 4G 256GB SSD NV940MX 2G独显 玫瑰金 超窄边框)</p>
+                            <span class="price">¥5599.00</span>
+                            <span class="discount">¥5799.00</span>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="goods-right">
+                <img src="//img14.360buyimg.com/mobilecms/s180x225_jfs/t4570/93/3589900997/77870/7f4305fe/5900ba3fNc021b7b6.jpg!q90" alt="">
+            </div>
+
+        </section>
+    </div>
+
+<script >
+    //倒计时
+    function interval() {
+        var hour = document.getElementById('J_hour');
+        var minute = document.getElementById('J_minute');
+        var second = document.getElementById('J_second');
+        var second1 = hour.innerText*60*60+minute.innerText*60+Number(second.innerText);
+        var timer = null;
+
+        timer = setInterval(function () {
+            if (second1 == 0){
+                clearInterval(timer);
+                return;
+            }
+            function fillZero(num) {
+                if (num<10){
+                    return'0'+num
+                }else{
+                    return num;
+                }
+            }
+
+            second1--;
+            hour.innerText =fillZero(parseInt(second1/60/60));
+            minute.innerText =fillZero(parseInt(second1/60 -hour.innerText*60));
+            second.innerText = fillZero(second1%60);
+        },1000)
+    }
+    interval();
+    //切换
+    var btnLeft = document.getElementById('J_iconfont1');
+    var btnRight = document.getElementById('J_iconfont2');
+    var goods = document.getElementById('J-goods');
+
+    btnLeft.onclick = function(){
+        goods.style.transform = 'translateX(-1000px)';
+    };
+    btnRight.onclick = function () {
+
+        goods.style.transform = 'translateX(0)';
+
+    }
+
+
+
+
+</script>
+</body>
+</html>
